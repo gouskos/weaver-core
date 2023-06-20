@@ -12,12 +12,10 @@ new_variables:
    part_e_log: np.log(part_energy)
    part_logptrel: np.log(part_pt/jet_pt)
    part_logerel: np.log(part_energy/jet_energy)
-   p4: _p4_from_pxpypze('part_px', 'part_px', 'part_px', 'part_px')
-   #jet_p4: _p4_from_ptetaphie('jet_pt', 'jet_eta', 'jet_phi', 'jet_energy')
-   #part_dphi: p4.deltaphi(jet_p4)
-   #part_deta: np.where(jet_p4.eta>0, p4.deltaeta(jet_p4), -p4.deltaeta(jet_p4))
-   part_deta: part_pt
-   part_dphi: part_pt
+   p4: _p4_from_pxpypze(part_px, part_py, part_pz, part_energy)
+   jet_p4: _p4_from_ptetaphie(jet_pt, jet_eta, jet_phi, jet_energy)
+   part_dphi: p4.deltaphi(jet_p4)
+   part_deta: np.where(jet_p4.eta>0, p4.deltaeta(jet_p4), -p4.deltaeta(jet_p4))
    part_deltaR: np.hypot(part_deta, part_dphi)
    jet_isBKG: sample!=1
    jet_isSIG: 1-jet_isBKG
